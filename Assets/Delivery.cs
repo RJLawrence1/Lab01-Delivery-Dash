@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Delivery : MonoBehaviour
 {
+    bool hasPackage;
     void OnTriggerEnter2D(Collider2D collision)
     {
         // if (the tag is package)
@@ -9,11 +10,13 @@ public class Delivery : MonoBehaviour
         if(collision.CompareTag("Package"))
         {
          Debug.Log("Picked up package");
+            hasPackage = true;
         }
 
-        if (collision.CompareTag("Customer"))
+        if (collision.CompareTag("Customer") && hasPackage)
         {
             Debug.Log("Delivered package");
+            hasPackage = false;
         }
     }
 }
